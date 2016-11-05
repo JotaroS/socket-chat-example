@@ -1,3 +1,4 @@
+sudo: true
 language: node_js
 env:
   matrix:
@@ -9,5 +10,4 @@ node_js:
   - "5.11"
   - "iojs"
 
-before_install:
-  - npm install --save
+
