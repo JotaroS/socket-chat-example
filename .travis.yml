@@ -1,0 +1,15 @@
+language: node_js
+env:
+  matrix:
+  - OS_TYPE=centos OS_VERSION=6
+
+node_js:
+  - "6"
+  - "6.1"
+  - "5.11"
+  - "0.6"
+  - "iojs"
+before_install:
+  - npm install --save
+script:
+  - npm test
