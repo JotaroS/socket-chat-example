@@ -14,7 +14,8 @@ app.get('/',function(req,res){
 
 //'connection'というセッションは予約？
 io.on('connection',function(socket){
-	console.log('a user connected');
+	console.log('a user connected: ' + socket.id);
+	socket.broadcast.emit('room message','user:'+socket.id+' logged in' );
 	//chat messageというイベントが発生した際に処理する。msgには、index.htmlのinputの値が格納される。
 	socket.on('chat message',function(msg){
 		//すべてのクライアントにメッセージを創出する。			
