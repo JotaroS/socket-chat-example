@@ -22,7 +22,12 @@ io.on('connection',function(socket){
 		io.emit('chat message',msg);
 		console.log('chat message : '+msg);
 	});
+
+	socket.on('typing alert',function(msg){
+		socket.broadcast.emit('typing alert',msg);
+	});
 });
+
 
 http.listen(3000,function(){
 	console.log('listening on port 3000');
