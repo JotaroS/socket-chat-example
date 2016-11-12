@@ -10,7 +10,7 @@
       form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
       form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
       p#alert-content{
-        color: #555;
+        color: #999;
         background: #eee;
         position: fixed;
         bottom: 40px;
@@ -47,12 +47,14 @@
           console.log('emit typing alert');
           isChange = true;
           socket.emit('typing alert','testuser');
+          setTimeout(function()
+          {
+            console.log('typing alert off emmited');
+            socket.emit('typing alert off','');
+            isChange = false;
+          },3000);
         }
-        setTimeout(function()
-        {
-          //$('alert').val('');
-          isChange = false;
-        },3000);
+
       });
       socket.on('chat message',function(msg){
           $('#messages').append($('<li>').text(msg));
@@ -62,6 +64,9 @@
       });
       socket.on('typing alert',function(msg){
           $('#alert').append($('<p id="alert-content">'+msg+' is typing.</p>'));
+      });
+      socket.on('typing alert off',function(msg){
+        $('#alert-content').remove();
       });
     </script>
   </body>

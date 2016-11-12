@@ -26,6 +26,9 @@ io.on('connection',function(socket){
 	socket.on('typing alert',function(msg){
 		socket.broadcast.emit('typing alert',msg);
 	});
+	socket.on('typing alert off',function(){
+		socket.broadcast.emit('typing alert off');
+	});
 });
 
 
